@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/CSS/Styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar" aria-label="Left navigation">
+        <div class="sidebar__title">Menu</div>
+
+                <nav class="sidebar__nav">
+          <a class="sidebar__link" href="/HTML/index.html">Dashboard</a>
+          <a class="sidebar__link" href="/HTML/Habits.html">Habits</a>
+          <a class="sidebar__link active" href="/HTML/Timer.html">Timer</a>
+          <a class="sidebar__link" href="#">Stats</a>
+          <a class="sidebar__link" href="/HTML/Settings.html">Settings</a>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <div class="main">
+        <!-- Top bar -->
+        <header class="topbar">
+          <button class="hamburger" id="hamburger" aria-label="Toggle sidebar" aria-expanded="false">
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="topbar__titleWrap">
+            <div class="topbar__title">Timer</div>
+          </div>
+        </header>
+
+        <!-- Page content -->
+        <main class="content">
+          <!-- Big orange blocks (drop your habit widgets in these) -->
+          <section class="panel">
+            <h2 class="panel__heading">Panel 1</h2>
+            <p class="panel__hint">Put timer / daily habits / streaks here.</p>
+          </section>
+
+          <section class="panel">
+            <h2 class="panel__heading">Panel 2</h2>
+            <p class="panel__hint">Put habit list / check-ins / quick actions here.</p>
+          </section>
+
+          <section class="panel">
+            <h2 class="panel__heading">Panel 3</h2>
+            <p class="panel__hint">Put analytics / progress charts here.</p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const hamburger = document.getElementById("hamburger");
+
+      hamburger.addEventListener("click", () => {
+        const isOpen = sidebar.classList.toggle("sidebar--open");
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #0F1C2E;
+  color: #E8EEF6;
+}
+
+/* Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: #0F1C2E;
+  border-right: 3px solid #ffffff;
+  padding: 14px 12px;
+}
+
+/* Sidebar Title */
+.sidebar__title {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #D4AF37;
+}
+
+/* Sidebar Links */
+.sidebar__nav {
+  display: grid;
+  gap: 8px;
+}
+
+.sidebar__link {
+  display: block;
+  padding: 10px 12px;
+  border: 2px solid #ffffff;
+  background: #1E3556;
+  text-decoration: none;
+  color: #E8EEF6;
+}
+
+.sidebar__link.active {
+  background: #2F5D9F;
+  border-left: 4px solid #D4AF37;
+}
+
+/* Main area */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top */
+.topbar {
+  position: relative;
+  min-height: 110px;
+  background: #1E3556;
+  border-bottom: 3px solid #ffffff;
+  display: flex;
+  align-items: flex-start;
+  padding: 18px 18px;
+}
+
+/* Burger */
+.hamburger {
+  width: 54px;
+  height: 54px;
+  background: #1E3556;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  display: grid;
+  place-content: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 4px;
+  background: #D4AF37;
+  border: 2px solid #ffffff;
+}
+
+/* Title Box Positioning */
+.topbar__titleWrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Title Box */
+.topbar__title {
+  width: min(520px, 70%);
+  background: #D4AF37;
+  color: #0F1C2E;
+  border: 3px solid #ffffff;
+  padding: 16px 24px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Main Section */
+.content {
+  background: #0F1C2E;
+  padding: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+/* Panels */
+.panel {
+  border: 3px solid #ffffff;
+  background: #1E3556;
+  min-height: 150px;
+  padding: 14px;
+}
+
+/* Panel Text */
+.panel__heading {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: #E8EEF6;
+}
+
+.panel__hint {
+  margin: 0;
+  opacity: 0.9;
+  color: #A8B4C7;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 900px) {
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    height: 100%;
+    z-index: 20;
+    transition: left 0.2s ease;
+  }
+
+  .sidebar--open {
+    left: 0;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
