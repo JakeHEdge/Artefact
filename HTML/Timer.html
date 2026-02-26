@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="/CSS/Styles.css" />
+    
   </head>
 
   <body>
@@ -12,8 +13,7 @@
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar" aria-label="Left navigation">
         <div class="sidebar__title">Menu</div>
-
-                <nav class="sidebar__nav">
+        <nav class="sidebar__nav">
           <a class="sidebar__link" href="/HTML/index.html">Dashboard</a>
           <a class="sidebar__link" href="/HTML/Habits.html">Habits</a>
           <a class="sidebar__link active" href="/HTML/Timer.html">Timer</a>
@@ -30,7 +30,6 @@
             <span></span>
             <span></span>
           </button>
-
           <div class="topbar__titleWrap">
             <div class="topbar__title">Timer</div>
           </div>
@@ -38,33 +37,153 @@
 
         <!-- Page content -->
         <main class="content">
-          <!-- Big orange blocks (drop your habit widgets in these) -->
           <section class="panel">
             <h2 class="panel__heading">Panel 1</h2>
             <p class="panel__hint">Put timer / daily habits / streaks here.</p>
-          </section>
 
-          <section class="panel">
-            <h2 class="panel__heading">Panel 2</h2>
-            <p class="panel__hint">Put habit list / check-ins / quick actions here.</p>
-          </section>
+            <div class="session-container">
+    <h1>Focus Timer</h1>
 
-          <section class="panel">
-            <h2 class="panel__heading">Panel 3</h2>
-            <p class="panel__hint">Put analytics / progress charts here.</p>
-          </section>
-        </main>
-      </div>
-    </div>
+    <label for="mood">Mood Before Session:</label>
+    <select id="mood">
+      <option value="1">Very Low</option>
+      <option value="2">Low</option>
+      <option value="3">Neutral</option>
+      <option value="4">Good</option>
+      <option value="5">Locked In</option>
+    </select>
 
-    <script>
-      const sidebar = document.getElementById("sidebar");
-      const hamburger = document.getElementById("hamburger");
+    <label for="energy">Energy Level:</label>
+    <select id="energy">
+      <option value="low">Low</option>
+      <option value="medium" selected>Medium</option>
+      <option value="high">High</option>
+    </select>
 
-      hamburger.addEventListener("click", () => {
-        const isOpen = sidebar.classList.toggle("sidebar--open");
-        hamburger.setAttribute("aria-expanded", String(isOpen));
-      });
+    <label for="task">What are you focusing on?</label>
+    <input type="text" id="task" placeholder="Enter task here">
+
+    <div id="timer">25:00</div>
+    <div id="session-label">Focus Time</div>
+
+    <button id="startBtn">Start</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+    
+<div id="session-label">Focus Time</div>
+<div id="next-break">Next break in: 25:00</div>
+
+<div class="progress-container">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<script>
+ const timerDisplay = document.getElementById("timer");
+      const sessionLabel = document.getElementById("session-label");
+      const startBtn = document.getElementById("startBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const energySelect = document.getElementById("energy");
+      const progressBar = document.getElementById("progress-bar");
+      const nextBreakDisplay = document.getElementById("next-break");
+
+      let focusTimeLeft = 1500; // default 25 min
+      let breakTimeLeft = 0;
+      let totalTime = focusTimeLeft;
+      let timerInterval = null;
+      let isRunning = false;
+      let isBreak = false;
+
+      function updateDisplay(seconds = focusTimeLeft) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        timerDisplay.innerText = `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+
+        // Update progress bar
+        const progressPercent = ((totalTime - seconds) / totalTime) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+
+        // Update next break display
+        if (!isBreak) {
+          nextBreakDisplay.innerText = `Next break in: ${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+        } else {
+          nextBreakDisplay.innerText = "On break!";
+        }
+      }
+
+      function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
+        isBreak = false;
+        startBtn.disabled = true;
+
+        const energy = energySelect.value;
+
+        if (energy === "low") focusTimeLeft = 900;
+        else if (energy === "medium") focusTimeLeft = 1500;
+        else if (energy === "high") focusTimeLeft = 2400;
+
+        totalTime = focusTimeLeft;
+        sessionLabel.innerText = "Focus Time";
+        updateDisplay(focusTimeLeft);
+
+        timerInterval = setInterval(() => {
+          focusTimeLeft--;
+          updateDisplay(focusTimeLeft);
+
+          if (focusTimeLeft <= 0) {
+            clearInterval(timerInterval);
+            isRunning = false;
+            alert("Focus Session Complete!");
+
+            let breakDuration = energy === "low" ? 600 : energy === "medium" ? 300 : 180;
+            startBreak(breakDuration);
+          }
+        }, 1000);
+      }
+
+      function startBreak(duration) {
+        breakTimeLeft = duration;
+        totalTime = breakTimeLeft;
+        isBreak = true;
+        isRunning = true;
+        sessionLabel.innerText = "Break Time";
+
+        updateDisplay(breakTimeLeft);
+
+        timerInterval = setInterval(() => {
+          breakTimeLeft--;
+          updateDisplay(breakTimeLeft);
+
+          if (breakTimeLeft <= 0) {
+            clearInterval(timerInterval);
+            isBreak = false;
+            isRunning = false;
+            startBtn.disabled = false;
+            sessionLabel.innerText = "Focus Time";
+
+            focusTimeLeft = 1500; // reset default focus time
+            totalTime = focusTimeLeft;
+            updateDisplay(focusTimeLeft);
+            alert("Break over! Ready for next session.");
+          }
+        }, 1000);
+      }
+
+      function resetTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        isBreak = false;
+        startBtn.disabled = false;
+        focusTimeLeft = 1500;
+        totalTime = focusTimeLeft;
+        sessionLabel.innerText = "Focus Time";
+        updateDisplay(focusTimeLeft);
+      }
+
+      startBtn.addEventListener("click", startTimer);
+      resetBtn.addEventListener("click", resetTimer);
+
+      updateDisplay(focusTimeLeft);
     </script>
   </body>
 </html>

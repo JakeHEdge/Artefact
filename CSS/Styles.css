@@ -156,3 +156,37 @@ body {
     margin-left: 0;
   }
 }
+
+.session-container { padding: 20px; color: white; } 
+#timer { font-size: 48px; font-weight: bold; }
+
+#session-label {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #D4AF37;
+}
+
+#next-break {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #A8B4C7;
+}
+
+.progress-container {
+  width: 100%;
+  background: #0F1C2E;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  height: 20px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #D4AF37;
+  transition: width 0.2s linear;
+}
+
