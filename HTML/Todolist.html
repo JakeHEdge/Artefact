@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/CSS/Styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar" aria-label="Left navigation">
+        <div class="sidebar__title">Menu</div>
+
+        <nav class="sidebar__nav">
+          <a class="sidebar__link" href="/HTML/index.html">Dashboard</a>
+          <a class="sidebar__link" href="/HTML/Habits.html">Habits</a>
+          <a class="sidebar__link" href="/HTML/Timer.html">Timer</a>
+          <a class="sidebar__link active" href="/HTML/Todolist.html">ToDoList</a>
+          <a class="sidebar__link" href="/HTML/Streaks.html">Streaks</a>
+          <a class="sidebar__link" href="/HTML/Stats.html">Stats</a>          
+          <a class="sidebar__link" href="/HTML/Settings.html">Settings</a>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <div class="main">
+        <!-- Top bar -->
+        <header class="topbar">
+          <button class="hamburger" id="hamburger" aria-label="Toggle sidebar" aria-expanded="false">
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="topbar__titleWrap">
+            <div class="topbar__title">Dashboard</div>
+          </div>
+        </header>
+
+        <!-- Page content -->
+        <main class="content">
+          <!-- Big orange blocks (drop your habit widgets in these) -->
+          <section class="panel">
+            <h2 class="panel__heading">Panel 1</h2>
+            <p class="panel__hint">Put timer / daily habits / streaks here.</p>
+             <main class="todo-wrap">
+    <section class="card">
+      <h2>Task List</h2>
+
+      <div class="row">
+        <input id="taskInput" type="text" placeholder="Add something you need to do…" />
+        <button id="addBtn" type="button">Add</button>
+      </div>
+
+      <div class="meta">
+        <span id="countText">0 tasks</span>
+        <span class="pill">Click checkbox to complete</span>
+      </div>
+
+      <ul id="taskList" class="list"></ul>
+
+      <div class="footer">
+        <button id="clearDone" class="ghost remove" type="button">Clear completed</button>
+        <button id="clearAll" class="remove" type="button">Clear all</button>
+      </div>
+    </section>
+  </main>
+          </section>
+
+          
+        </main>
+      </div>
+    </div>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const hamburger = document.getElementById("hamburger");
+
+      hamburger.addEventListener("click", () => {
+        const isOpen = sidebar.classList.toggle("sidebar--open");
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+      });
+    </script>
+
+    <script src="/Server/ToDoList.js"></script>
+  </body>
+</html>
