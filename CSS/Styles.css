@@ -455,3 +455,168 @@ button:hover {
   background: #E8E3D9;
   opacity: 1;
 }
+
+/* ===== Habits ===== */
+.panel {
+  background: #f7f3ea;
+  border: 1px solid #e3dccd;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.panel__title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.panel__subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.habits__top {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.habitForm {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  border: 1px solid #d9d3c7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.input:focus {
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+}
+
+.btn {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: #1e3a8a;
+  color: #fff;
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid #d9d3c7;
+  color: #111827;
+}
+
+.btn--danger {
+  background: #991b1b;
+  color: #fff;
+}
+
+.habits__progress {
+  border: 1px solid #e3dccd;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.habits__progressTitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.habits__progressValue {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.habits__progressBar {
+  margin-top: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #eee7da;
+  overflow: hidden;
+}
+
+.habits__progressFill {
+  height: 100%;
+  background: #1e3a8a;
+  width: 0%;
+  transition: width 180ms ease;
+}
+
+.habits__list {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.habitCard {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e3dccd;
+  border-radius: 12px;
+}
+
+.habitCard__name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.habitCard__meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.habitCard__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.badge--done {
+  border-color: rgba(30, 58, 138, 0.25);
+  background: rgba(30, 58, 138, 0.08);
+  color: #1e3a8a;
+}
+
+@media (max-width: 900px) {
+  .habits__top {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,112 +1,61 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const timerDisplay = document.getElementById("timer");
-  const sessionLabel = document.getElementById("session-label");
-  const nextBreakDisplay = document.getElementById("next-break");
-  const progressBar = document.getElementById("progress-bar");
+const express = require("express");
+const cors = require("cors");
+const db = require("./db");
 
-  const startBtn = document.getElementById("startBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const energySelect = document.getElementById("energy");
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-  let timeLeft = 1500; // default 25 min
-  let totalTime = timeLeft;
-  let timerInterval = null;
-  let isRunning = false;
-  let isBreak = false;
+const USER_ID = 1;
 
-  function updateDisplay(seconds = timeLeft) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    timerDisplay.innerText = `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+/* GET habits */
+app.get("/api/habits", async (req, res) => {
+  const [rows] = await db.query(
+    "SELECT * FROM habits WHERE user_id=?",
+    [USER_ID]
+  );
+  res.json(rows);
+});
 
-    // Update progress bar
-    const progressPercent = ((totalTime - seconds) / totalTime) * 100;
-    progressBar.style.width = `${progressPercent}%`;
+/* CREATE habit */
+app.post("/api/habits", async (req, res) => {
 
-    // Update next break timer if focus session
-    if (!isBreak) {
-      nextBreakDisplay.innerText = `Next break in: ${minutes}:${secs < 10 ? "0" : ""}${secs}`;
-    } else {
-      nextBreakDisplay.innerText = "On break!";
-    }
-  }
+  const { name, description } = req.body;
 
-  function startTimer() {
-    if (isRunning) return;
+  const [result] = await db.query(
+    "INSERT INTO habits (user_id,name,description) VALUES (?,?,?)",
+    [USER_ID,name,description]
+  );
 
-    isRunning = true;
-    isBreak = false;
-    startBtn.disabled = true;
-    sessionLabel.innerText = "Focus Time";
+  res.json({ id: result.insertId });
+});
 
-    const energy = energySelect.value;
+/* UPDATE habit */
+app.put("/api/habits/:id", async (req,res) => {
 
-    if (energy === "low") timeLeft = 900;
-    else if (energy === "medium") timeLeft = 1500;
-    else if (energy === "high") timeLeft = 2400;
+  const { name, description } = req.body;
 
-    totalTime = timeLeft; // store total for progress bar
-    updateDisplay();
+  await db.query(
+    "UPDATE habits SET name=?, description=? WHERE id=?",
+    [name,description,req.params.id]
+  );
 
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      updateDisplay();
+  res.json({ success:true });
 
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        isRunning = false;
-        alert("Focus Session Complete!");
+});
 
-        // Determine break time
-        let breakTime;
-        if (energy === "low") breakTime = 600;
-        else if (energy === "medium") breakTime = 300;
-        else if (energy === "high") breakTime = 180;
+/* DELETE habit */
+app.delete("/api/habits/:id", async (req,res) => {
 
-        startBreak(breakTime);
-      }
-    }, 1000);
-  }
+  await db.query(
+    "DELETE FROM habits WHERE id=?",
+    [req.params.id]
+  );
 
-  function startBreak(duration) {
-    timeLeft = duration;
-    totalTime = duration;
-    isBreak = true;
-    isRunning = true;
-    startBtn.disabled = true;
-    sessionLabel.innerText = "Break Time";
+  res.json({ success:true });
 
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      updateDisplay();
+});
 
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        isBreak = false;
-        isRunning = false;
-        startBtn.disabled = false;
-        sessionLabel.innerText = "Focus Time";
-        timeLeft = 1500;
-        totalTime = 1500;
-        updateDisplay();
-        alert("Break over! Ready for the next session.");
-      }
-    }, 1000);
-  }
-
-  function resetTimer() {
-    clearInterval(timerInterval);
-    isRunning = false;
-    isBreak = false;
-    startBtn.disabled = false;
-    timeLeft = 1500;
-    totalTime = 1500;
-    sessionLabel.innerText = "Focus Time";
-    updateDisplay();
-  }
-
-  startBtn.addEventListener("click", startTimer);
-  resetBtn.addEventListener("click", resetTimer);
-
-  updateDisplay();
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
 });

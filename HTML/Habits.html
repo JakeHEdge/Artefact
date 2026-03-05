@@ -44,17 +44,44 @@
           <section class="panel">
             <h2 class="panel__heading">Panel 1</h2>
             <p class="panel__hint">Put timer / daily habits / streaks here.</p>
+              <!-- Habits Panel -->
+<section class="panel">
+  <div class="panel__header">
+    <h2 class="panel__title">Habits</h2>
+    <p class="panel__subtitle">Build consistency. Tick habits off daily.</p>
+  </div>
+
+  <div class="habits__top">
+    <form id="habitForm" class="habitForm" autocomplete="off">
+      <input
+        id="habitName"
+        class="input"
+        type="text"
+        placeholder="Add a habit (e.g. Gym, Study, Read)"
+        maxlength="32"
+        required
+      />
+      <button class="btn btn--primary" type="submit">Add</button>
+    </form>
+
+    <div class="habits__progress">
+      <div class="habits__progressTitle">Today’s Progress</div>
+      <div class="habits__progressValue" id="todayProgress">0 / 0</div>
+      <div class="habits__progressBar" aria-hidden="true">
+        <div class="habits__progressFill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="habits__list" id="habitList" aria-live="polite">
+    <!-- Habit cards render here -->
+  </div>
+</section>
+
+<script src="/JS/Habits.js"></script>
           </section>
 
-          <section class="panel">
-            <h2 class="panel__heading">Panel 2</h2>
-            <p class="panel__hint">Put habit list / check-ins / quick actions here.</p>
-          </section>
-
-          <section class="panel">
-            <h2 class="panel__heading">Panel 3</h2>
-            <p class="panel__hint">Put analytics / progress charts here.</p>
-          </section>
+          
         </main>
       </div>
     </div>
@@ -69,4 +96,5 @@
       });
     </script>
   </body>
+  <script src="/Server/Habits.js"></script>
 </html>
