@@ -101,6 +101,12 @@ body {
   justify-content: center;
 }
 
+.topbar__rightWrap {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .topbar__title {
   font-weight: 600;
   font-size: 18px;
@@ -620,3 +626,245 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.streak-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.summary-card {
+  background: #ffffff;
+  border: 1px solid #d8d2c8;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.summary-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.streak-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.streak-card {
+  background: #ffffff;
+  border: 1px solid #d8d2c8;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.streak-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.streak-card__top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.streak-badge {
+  font-weight: 700;
+  color: #d97706;
+}
+
+.streak-best {
+  margin: 0 0 0.75rem 0;
+  color: #555;
+}
+
+.streak-bar {
+  width: 100%;
+  height: 10px;
+  background: #ece7df;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.streak-bar__fill {
+  height: 100%;
+  background: #2f5bea;
+  border-radius: 999px;
+}
+
+.streak-status {
+  margin: 0;
+  font-weight: 600;
+}
+
+.streak-status.complete {
+  color: #15803d;
+}
+
+.streak-status.missed {
+  color: #b91c1c;
+}
+
+.streak-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.streak-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.streak-badge {
+  font-weight: 700;
+  color: #f97316;
+  font-size: 0.95rem;
+}
+
+.streak-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.summary-card {
+  background: #ffffff;
+  border: 1px solid #d8d2c8;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.summary-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.streak-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.streak-card {
+  background: #ffffff;
+  border: 1px solid #d8d2c8;
+  border-radius: 14px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.streak-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.streak-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.streak-card__top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.streak-badge {
+  font-weight: 700;
+  color: #f97316;
+  font-size: 0.95rem;
+}
+
+.streak-best {
+  margin: 0 0 0.75rem 0;
+  color: #555;
+}
+
+.streak-bar {
+  width: 100%;
+  height: 10px;
+  background: #ece7df;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.streak-bar__fill {
+  height: 100%;
+  background: #2f5bea;
+  border-radius: 999px;
+}
+
+.streak-week {
+  margin: 10px 0 14px;
+}
+
+.week-labels {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.week-labels span {
+  text-align: center;
+}
+
+.week-dots {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+}
+
+.day {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+.day.done {
+  background: #000000;
+  outline-style: solid;
+}
+
+.day.miss {
+  background: #ffffff;
+  outline-style: solid;
+}
+
+.streak-status {
+  margin: 0;
+  font-weight: 600;
+}
+
+.streak-status.complete {
+  color: #15803d;
+}
+
+.streak-status.missed {
+  color: #b91c1c;
+}
+

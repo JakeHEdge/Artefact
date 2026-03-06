@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Streaks</title>
     <link rel="stylesheet" href="/CSS/Styles.css" />
   </head>
 
@@ -19,7 +19,7 @@
           <a class="sidebar__link" href="/HTML/Timer.html">Timer</a>
           <a class="sidebar__link" href="/HTML/Todolist.html">ToDoList</a>
           <a class="sidebar__link active" href="/HTML/Streaks.html">Streaks</a>
-          <a class="sidebar__link" href="/HTML/Stats.html">Stats</a>          
+          <a class="sidebar__link" href="/HTML/Stats.html">Stats</a>
           <a class="sidebar__link" href="/HTML/Settings.html">Settings</a>
         </nav>
       </aside>
@@ -34,26 +34,152 @@
           </button>
 
           <div class="topbar__titleWrap">
-            <div class="topbar__title">Dashboard</div>
+            <div class="topbar__title">Streaks</div>
           </div>
         </header>
 
         <!-- Page content -->
         <main class="content">
-          <!-- Big orange blocks (drop your habit widgets in these) -->
           <section class="panel">
-            <h2 class="panel__heading">Panel 1</h2>
-            <p class="panel__hint">Put timer / daily habits / streaks here.</p>
+            <h2 class="panel__heading">Consistency Overview</h2>
+            <p class="panel__hint">Track your current progress and keep your habits alive every day.</p>
+
+            <div class="streak-summary">
+              <div class="summary-card">
+                <h3>Active Habits</h3>
+                <p>3</p>
+              </div>
+
+              <div class="summary-card">
+                <h3>Longest Current Streak</h3>
+                <p>9 days</p>
+              </div>
+
+              <div class="summary-card">
+                <h3>Best Streak</h3>
+                <p>15 days</p>
+              </div>
+
+              <div class="summary-card">
+                <h3>Weekly Success</h3>
+                <p>18 / 21</p>
+              </div>
+            </div>
           </section>
 
           <section class="panel">
-            <h2 class="panel__heading">Panel 2</h2>
-            <p class="panel__hint">Put habit list / check-ins / quick actions here.</p>
-          </section>
+            <h2 class="panel__heading">Habit Streaks</h2>
+            <p class="panel__hint">See which habits are being maintained and which need attention.</p>
 
-          <section class="panel">
-            <h2 class="panel__heading">Panel 3</h2>
-            <p class="panel__hint">Put analytics / progress charts here.</p>
+            <div class="streak-grid">
+              <div class="streak-card">
+                <div class="streak-card__top">
+                  <h3>Gym</h3>
+                  <span class="streak-badge">🔥 5 days</span>
+                </div>
+
+                <p class="streak-best">Best streak: 12 days</p>
+
+                <div class="streak-bar">
+                  <div class="streak-bar__fill" style="width: 42%;"></div>
+                </div>
+
+                <div class="streak-week">
+                  <div class="week-labels">
+                    <span>S</span>
+                    <span>M</span>
+                    <span>T</span>
+                    <span>W</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span>S</span>
+                  </div>
+                  <div class="week-dots">
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day miss"></span>
+                    <span class="day miss"></span>
+                    <span class="day miss"></span>
+                  </div>
+                </div>
+
+                <p class="streak-status complete">Completed today</p>
+              </div>
+
+              <div class="streak-card">
+                <div class="streak-card__top">
+                  <h3>Study</h3>
+                  <span class="streak-badge">🔥 2 days</span>
+                </div>
+
+                <p class="streak-best">Best streak: 7 days</p>
+
+                <div class="streak-bar">
+                  <div class="streak-bar__fill" style="width: 28%;"></div>
+                </div>
+
+                <div class="streak-week">
+                  <div class="week-labels">
+                    <span>S</span>
+                    <span>M</span>
+                    <span>T</span>
+                    <span>W</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span>S</span>
+                  </div>
+                  <div class="week-dots">
+                    <span class="day miss"></span>
+                    <span class="day miss"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day miss"></span>
+                    <span class="day miss"></span>
+                    <span class="day miss"></span>
+                  </div>
+                </div>
+
+                <p class="streak-status missed">Not completed today</p>
+              </div>
+
+              <div class="streak-card">
+                <div class="streak-card__top">
+                  <h3>Reading</h3>
+                  <span class="streak-badge">🔥 9 days</span>
+                </div>
+
+                <p class="streak-best">Best streak: 15 days</p>
+
+                <div class="streak-bar">
+                  <div class="streak-bar__fill" style="width: 60%;"></div>
+                </div>
+
+                <div class="streak-week">
+                  <div class="week-labels">
+                    <span>S</span>
+                    <span>M</span>
+                    <span>T</span>
+                    <span>W</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span>S</span>
+                  </div>
+                  <div class="week-dots">
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day done"></span>
+                    <span class="day miss"></span>
+                  </div>
+                </div>
+
+                <p class="streak-status complete">Completed today</p>
+              </div>
+            </div>
           </section>
         </main>
       </div>

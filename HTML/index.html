@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/CSS/Styles.css" />
   </head>
 
+
+
   <body>
     <div class="app">
       <!-- Sidebar -->
@@ -34,7 +36,11 @@
           </button>
 
           <div class="topbar__titleWrap">
-            <div class="topbar__title">Dashboard</div>
+            <div class="topbar__title">Dashboard</iv>
+          </div>
+
+          <div class="topbar_rightwrap">
+          <button id="exportWeeklyReport">Export Weekly Report</button>
           </div>
         </header>
 
@@ -67,6 +73,33 @@
         const isOpen = sidebar.classList.toggle("sidebar--open");
         hamburger.setAttribute("aria-expanded", String(isOpen));
       });
+    </script>
+
+    <script>
+      document.getElementById("exportWeeklyReport").addEventListener("click", () => {
+  const rows = [
+    ["Day", "Habits Completed", "Tasks Completed", "Focus Minutes"],
+    ["Mon", 2, 1, 30],
+    ["Tue", 3, 2, 45],
+    ["Wed", 2, 1, 25],
+    ["Thu", 1, 0, 20],
+    ["Fri", 3, 3, 50],
+    ["Sat", 4, 2, 45],
+    ["Sun", 3, 3, 30]
+  ];
+
+  const csvContent = rows.map(row => row.join(",")).join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "weekly_report.csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+});
     </script>
   </body>
 </html>
